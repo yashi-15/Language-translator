@@ -1,0 +1,12 @@
+run : python app.py (terminal)
+
+# text translator #
+    limit : 850-870 words
+    success : letter, number, all keyboard characters, emojis
+    fail : line break, emoji failiure in some languages
+
+
+# doc translator #
+    limit : 500 words
+    success : words, symbols(quotation marks, commas, full stop, etc) , different fonts/colors , 
+    fail : images, emojis, pdf, rotated images 

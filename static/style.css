@@ -1,0 +1,25 @@
+/* h1{
+    text-align: center;
+} */
+.lang-selector{
+    margin: auto;
+    margin-top: 70px;
+    width: fit-content;
+    padding: 10px;
+}
+.initial-blocks{
+    display: flex;
+    width: fit-content;
+    margin: auto;
+    margin-top: 40px;
+}
+.text-translator , .doc-translator{
+    display: flex;
+    flex-direction: column;
+}
+
+#output{
+    margin-top: 25px;
+    display: flex;
+    justify-content: center;
+}
