@@ -1,6 +1,11 @@
 /* h1{
     text-align: center;
 } */
+body{
+    margin: 0;
+    padding: 0;
+    background-color: rgb(26, 26, 34);
+}
 .lang-selector{
     margin: auto;
     margin-top: 70px;
@@ -36,4 +41,24 @@
     margin: 10px 10px;
     border: 1px solid black;
     padding: 10px 10px;
+}
+#translate-btn{
+    border-radius: 50px;
+    border: none;
+    margin: 10px 10px;
+    padding: 15px 15px;
+    color: white;
+}
+#translate-btn:hover{
+    background-color: rgba(12, 51, 141, 0.622) !important;
+    transition: 0.8s
+}
+.bord{
+    border-radius: 10px;
+    border: none;
+    margin: 10px 10px;
+    color: white;
+}
+label{
+    margin: 10px 10px;
 }

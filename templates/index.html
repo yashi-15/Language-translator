@@ -11,41 +11,42 @@
     />
   </head>
   <body>
-    <h1 class="container text-center">Language Translator</h1>
+    <h1 class="container text-center text-white mt-5">Language Translator</h1>
 
-    <div class="lang-selector">
-      <label for="target-language">Select target language:</label>
-      <select id="languageSelect">
+    <div class="lang-selector text-white">
+      <label for="target-language " >Select target language:</label>
+      <select id="languageSelect" class="form-select bg-black text-white bord fw-light">
         <option value="es">Spanish</option>
         <option value="fr">French</option>
         <option value="hi">Hindi</option>
         <option value="de">German</option>
         <!-- Add more language options here -->
       </select>
+      
     </div>
 
     <div class="initial-blocks">
       <div class="text-translator">
-        <label for="source-text" class="mb-2">Enter text to translate:</label>
-        <textarea id="source-text" rows="4" cols="50" class="mb-2"></textarea>
-        <button onclick="translateText()" class="mb-2">Translate</button>
+        <label for="source-text" class="mb-2 text-white form-label">Enter text to translate:</label>
+        <textarea id="source-text" rows="4" cols="50" class="mb-2 bg-black text-white form-control bord"></textarea>
+        <button onclick="translateText()" class="mb-2 bg-black" id="translate-btn">Translate</button>
       </div>
       <div class="doc-translator m-5">
-        <label class="mb-2">Upload file (.pdf/.jpg/.jpeg/.png) here:</label>
-        <input type="file" id="fileInput" accept=".pdf, .jpg, .jpeg, .png" class="mb-2" />
-        <button onclick="translateDocument()" class="mb-2">Translate</button>
+        <label class="mb-2 text-white form-label">Upload file (.pdf/.jpg/.jpeg/.png) here:</label>
+        <input type="file" class="form-control bg-black mb-2 text-white fw-light bord" id="fileInput" accept=".pdf, .jpg, .jpeg, .png"/>
+        <button onclick="translateDocument()" class="mb-2 bg-black" id="translate-btn">Translate</button>
       </div>
     </div>
 
     <div id="output">
-      <div id="translated-text"></div>
+      <div id="translated-text" class="text-white"></div>
       <div id="accuracy-check">
         <!-- <p>Accuracy of the translated text is 80%</p> -->
       </div>
       <div id="keywords">
-        <div id="keys">
+        <div id="keys" class="text-white">
         </div>
-        <div id="key-frequency">
+        <div id="key-frequency" class="text-white">
         </div>
       </div>
     </div>
