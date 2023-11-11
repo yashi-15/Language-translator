@@ -16,6 +16,9 @@ function translateText() {
     .then(data => {
         console.log(data)
         document.getElementById('translated-text').textContent = data.translation;
+        document.getElementById('keys').textContent = data.keys;
+        document.getElementById('key-frequency').textContent = data.frequency;
+
     })
     .catch(error => console.error('Error:', error));
 }

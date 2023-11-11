@@ -23,3 +23,12 @@
     display: flex;
     justify-content: center;
 }
+#translated-text{
+    width: 50%;
+    margin: 10px 70px;
+}
+
+#keywords{
+    display: flex;
+    flex-direction: column;
+}
