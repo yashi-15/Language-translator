@@ -1,26 +1,39 @@
 function displayKeywords(keywords_list) {
-    
-
-    // Get the element where you want to display keywords
     var keysContainer = document.getElementById('keys');
-
-    // Clear any existing content
     keysContainer.innerHTML = '';
 
-    // Iterate through the keywords and create elements
     keywords_list.forEach(function (keyword) {
         var keywordElement = document.createElement('span');
         keywordElement.textContent = keyword;
         keywordElement.className = 'keyword';
 
-        // Append the keyword element to the container
         keysContainer.appendChild(keywordElement);
     });
+}
+
+function scrollToOutput() {
+    const outputElement = document.getElementById('translated-text');
+    const outputPosition = outputElement.offsetTop;
+    const scrollToPosition = outputPosition - (window.innerHeight) + (outputElement.offsetHeight / 2);
+    window.scrollTo({
+        top: scrollToPosition,
+        behavior: 'smooth' 
+    });
+}
+
+function showLoading() {
+    document.getElementById('loading').style.display = 'flex';
+}
+
+function hideLoading() {
+    document.getElementById('loading').style.display = 'none';
 }
 
 function translateText() {
     const sourceText = document.getElementById('source-text').value;
     const targetLanguage = document.getElementById('languageSelect').value;
+
+    showLoading();
 
     fetch('/translatetext', {
         method: 'POST',
@@ -39,9 +52,13 @@ function translateText() {
         var keywords = data.keys
         displayKeywords(keywords);
         document.getElementById('key-frequency').textContent = data.frequency;
-
+        scrollToOutput();
     })
-    .catch(error => console.error('Error:', error));
+    .catch(error => console.error('Error:', error))
+
+    .finally(() => {
+        hideLoading();
+    });
 }
 
 
@@ -49,7 +66,6 @@ function translateText() {
 function translateDocument() {
     const fileInput = document.getElementById('fileInput');
     const languageSelect = document.getElementById('languageSelect');
-    // const translatedTextDiv = document.getElementById('translated-text');
 
     const file = fileInput.files[0];
     const targetLanguage = languageSelect.value;
@@ -58,7 +74,9 @@ function translateDocument() {
     formData.append('file', file);
     formData.append('languageSelect', targetLanguage);
 
-    console.log("Form Data:", formData);  // Log form data for debugging
+    console.log("Form Data:", formData);  
+    
+    showLoading();
 
     fetch('/translatedoc', {
         method: 'POST',
@@ -71,14 +89,17 @@ function translateDocument() {
         return response.json();
     })
     .then(data => {
-        console.log(data); // Log the response for debugging
-        // translatedTextDiv.innerText = 'Translated Text:\n\n' + data.translation;
+        console.log(data);
         document.getElementById('translated-text').textContent = data.translation;
         var keywords = data.keys
         displayKeywords(keywords);
         document.getElementById('key-frequency').textContent = data.frequency;
+        scrollToOutput();
     })
     .catch(error => {
         console.error('Error:', error);
+    })
+    .finally(() => {
+        hideLoading();
     });
 }
