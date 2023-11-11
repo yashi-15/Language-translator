@@ -10,17 +10,10 @@ from nltk.corpus import stopwords
 
 
 def extract_keywords(text):
-    # Tokenize the text
     words = word_tokenize(text)
-    
-    # Remove stopwords
     words = [word.lower() for word in words if word.isalpha() and word.lower() not in stopwords.words('english')]
-    
-    # Calculate word frequencies
     freq_dist = FreqDist(words)
-    
-    # Get the most common words
-    keywords = freq_dist.most_common(5)  # You can adjust the number of keywords
+    keywords = freq_dist.most_common(5)
     
     return keywords
 
@@ -80,7 +73,17 @@ def translate_text():
     translator = Translator(to_lang=target_language)
     translated_text = translator.translate(text)
 
-    return jsonify({'translated_text': translated_text})
+    keywords = extract_keywords(text)
+    # print(keywords)
+    keys = [item[0] for item in keywords]
+    frequency = [item[1] for item in keywords]
+    print(translated_text)
+    print(keys)
+    print(frequency)
+    response = {'translation': translated_text,'keys': keys, 'frequency': frequency}
+
+    return jsonify(response)
+    # return jsonify({'translated_text': translated_text})
 
 
 # doc 

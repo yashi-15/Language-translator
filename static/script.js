@@ -1,3 +1,23 @@
+function displayKeywords(keywords_list) {
+    
+
+    // Get the element where you want to display keywords
+    var keysContainer = document.getElementById('keys');
+
+    // Clear any existing content
+    keysContainer.innerHTML = '';
+
+    // Iterate through the keywords and create elements
+    keywords_list.forEach(function (keyword) {
+        var keywordElement = document.createElement('span');
+        keywordElement.textContent = keyword;
+        keywordElement.className = 'keyword';
+
+        // Append the keyword element to the container
+        keysContainer.appendChild(keywordElement);
+    });
+}
+
 function translateText() {
     const sourceText = document.getElementById('source-text').value;
     const targetLanguage = document.getElementById('languageSelect').value;
@@ -16,7 +36,8 @@ function translateText() {
     .then(data => {
         console.log(data)
         document.getElementById('translated-text').textContent = data.translation;
-        document.getElementById('keys').textContent = data.keys;
+        var keywords = data.keys
+        displayKeywords(keywords);
         document.getElementById('key-frequency').textContent = data.frequency;
 
     })
@@ -28,7 +49,7 @@ function translateText() {
 function translateDocument() {
     const fileInput = document.getElementById('fileInput');
     const languageSelect = document.getElementById('languageSelect');
-    const translatedTextDiv = document.getElementById('translated-text');
+    // const translatedTextDiv = document.getElementById('translated-text');
 
     const file = fileInput.files[0];
     const targetLanguage = languageSelect.value;
@@ -51,7 +72,11 @@ function translateDocument() {
     })
     .then(data => {
         console.log(data); // Log the response for debugging
-        translatedTextDiv.innerText = 'Translated Text:\n\n' + data.translated_text;
+        // translatedTextDiv.innerText = 'Translated Text:\n\n' + data.translation;
+        document.getElementById('translated-text').textContent = data.translation;
+        var keywords = data.keys
+        displayKeywords(keywords);
+        document.getElementById('key-frequency').textContent = data.frequency;
     })
     .catch(error => {
         console.error('Error:', error);
