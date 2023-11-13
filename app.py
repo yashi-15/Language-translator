@@ -4,10 +4,19 @@ import pytesseract
 from PIL import Image
 import PyPDF2
 from translate import Translator
-
+from sentence_transformers import SentenceTransformer
 from nltk import FreqDist, word_tokenize
 from nltk.corpus import stopwords
+import numpy as np
 
+def calculate_similarity(original, translated):
+    model = SentenceTransformer('paraphrase-MiniLM-L6-v2')
+    original_embedding = model.encode(original)
+    translated_embedding = model.encode(translated)
+
+    similarity = np.dot(original_embedding, translated_embedding) / (np.linalg.norm(original_embedding) * np.linalg.norm(translated_embedding))
+    
+    return similarity * 100
 
 def extract_keywords(text):
     words = word_tokenize(text)
@@ -42,7 +51,9 @@ def translate():
     print(keys)
     print(frequency)
     print(key_trans)
-    response = {'translation': translated_text,'keys': keys, 'keystranslation': key_trans, 'frequency': frequency}
+    similarity = calculate_similarity(source_text, translated_text)
+    print(similarity)
+    response = {'translation': translated_text,'keys': keys, 'keystranslation': key_trans, 'frequency': frequency, 'similarity': similarity}
 
     return jsonify(response)
 

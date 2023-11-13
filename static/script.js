@@ -81,6 +81,7 @@ function translateText() {
     .then(data => {
         console.log(data)
         document.getElementById('translated-text').textContent = data.translation;
+        document.getElementById('accuracy-check').textContent = data.similarity;
         var freqKey = data.frequency;
         var keywords = data.keys;
         var keysTrans = data.keystranslation;
@@ -125,7 +126,7 @@ function translateDocument() {
         console.log(data);
         document.getElementById('translated-text').textContent = data.translation;
         var keywords = data.keys
-        displayKeywords(keywords);
+        displayKeywords(keywords,keysTrans,freqKey);
         document.getElementById('key-frequency').textContent = data.frequency;
         scrollToOutput();
     })
