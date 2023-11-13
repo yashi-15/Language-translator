@@ -35,9 +35,14 @@ def translate():
     # print(keywords)
     keys = [item[0] for item in keywords]
     frequency = [item[1] for item in keywords]
+    key_trans=[]
+    for key in keys:
+        trans=translator.translate(key, dest=target_language).text
+        key_trans.append(trans)
     print(keys)
     print(frequency)
-    response = {'translation': translated_text,'keys': keys, 'frequency': frequency}
+    print(key_trans)
+    response = {'translation': translated_text,'keys': keys, 'keystranslation': key_trans, 'frequency': frequency}
 
     return jsonify(response)
 

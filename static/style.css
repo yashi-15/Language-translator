@@ -1,124 +1,159 @@
-body{
-    margin: 0;
-    padding: 0;
-    background-color: rgb(26, 26, 34);
+body {
+  margin: 0;
+  padding: 0;
+  background-color: rgb(26, 26, 34);
 }
-.lang-selector{
-    margin: auto;
-    margin-top: 70px;
-    width: fit-content;
-    padding: 10px;
+.lang-selector {
+  margin: auto;
+  margin-top: 70px;
+  width: fit-content;
+  padding: 10px;
 }
-.initial-blocks{
-    display: flex;
-    width: fit-content;
-    margin: auto;
-    margin-top: 40px;
+.initial-blocks {
+  display: flex;
+  width: fit-content;
+  margin: auto;
+  margin-top: 40px;
 }
-.text-translator , .doc-translator{
-    display: flex;
-    flex-direction: column;
-}
-
-#output{
-    margin-top: 25px;
-    display: flex;
-    justify-content: center;
-}
-#translated-text{
-    width: 50%;
-    margin: 10px 70px;
+.text-translator,
+.doc-translator {
+  display: flex;
+  flex-direction: column;
 }
 
-#keywords{
-    display: flex;
-    flex-direction: column;
+#output {
+  margin-top: 20px;
+  padding: 20px 20px;
+  display: flex;
+  justify-content: center;
 }
-.keyword{
-    margin: 10px 10px;
-    border: 1px solid black;
-    padding: 10px 10px;
-}
-#translate-btn{
-    border-radius: 50px;
-    border: none;
-    margin: 10px 10px;
-    padding: 15px 15px;
-    color: white;
-}
-#translate-btn:hover{
-    background-color: rgba(12, 51, 141, 0.622) !important;
-    transition: 0.8s
-}
-.bord{
-    border-radius: 10px;
-    border: none;
-    margin: 10px 10px;
-    color: white;
-}
-label{
-    margin: 10px 10px;
+#translated-text {
+  width: 45%;
+  margin: 10px 70px;
 }
 
-#loading{
-    display: none;
-    justify-content: center;
-    align-items: center;
+#keywords {
+  display: flex;
+  flex-direction: column;
+}
+.keyword {
+  margin: 10px 10px;
+  border: 2px solid rgba(12, 51, 141, 0.622);
+  padding: 20px 20px;
+  border-radius: 5px;
+}
+#translate-btn {
+  border-radius: 50px;
+  border: none;
+  margin: 10px 10px;
+  padding: 15px 15px;
+  color: white;
+}
+#translate-btn:hover {
+  background-color: rgba(12, 51, 141, 0.622) !important;
+  transition: 0.8s;
+}
+.bord {
+  border-radius: 10px;
+  border: none;
+  margin: 10px 10px;
+  color: white;
+}
+label {
+  margin: 10px 10px;
+}
+
+#loading {
+  display: none;
+  justify-content: center;
+  align-items: center;
 }
 
 .wave {
-    width: 5px;
-    height: 50px;
-    background: linear-gradient(30deg, rgba(12, 51, 141, 0.622), rgb(59, 82, 122));
-    margin: 10px;
-    animation: wave 1s linear infinite;
-    border-radius: 20px;
-  }
-  
+  width: 5px;
+  height: 50px;
+  background: linear-gradient(
+    30deg,
+    rgba(12, 51, 141, 0.622),
+    rgb(59, 82, 122)
+  );
+  margin: 10px;
+  animation: wave 1s linear infinite;
+  border-radius: 20px;
+}
+
 .wave:nth-child(2) {
-animation-delay: 0.1s;
+  animation-delay: 0.1s;
 }
 
 .wave:nth-child(3) {
-animation-delay: 0.2s;
+  animation-delay: 0.2s;
 }
 
 .wave:nth-child(4) {
-animation-delay: 0.3s;
+  animation-delay: 0.3s;
 }
 
 .wave:nth-child(5) {
-animation-delay: 0.4s;
+  animation-delay: 0.4s;
 }
 
 .wave:nth-child(6) {
-animation-delay: 0.5s;
+  animation-delay: 0.5s;
 }
 
 .wave:nth-child(7) {
-animation-delay: 0.6s;
+  animation-delay: 0.6s;
 }
 
 .wave:nth-child(8) {
-animation-delay: 0.7s;
+  animation-delay: 0.7s;
 }
 
 .wave:nth-child(9) {
-animation-delay: 0.8s;
+  animation-delay: 0.8s;
 }
 
 .wave:nth-child(10) {
-animation-delay: 0.9s;
+  animation-delay: 0.9s;
 }
 
 @keyframes wave {
-0% {
+  0% {
     transform: scale(0);
-}
-50% {
+  }
+  50% {
     transform: scale(1);
-}
-100% {
+  }
+  100% {
     transform: scale(0);
+  }
 }
+
+.tooltip {
+  position: absolute;
+  background-color: rgba(12, 51, 141, 0.622);
+  color: #fff;
+  padding: 5px;
+  border-radius: 5px;
+}
+.keyword::before {
+  content: attr(data-translation) " (" attr(data-frequency) ")";
+  position: absolute;
+  visibility: hidden;
+  background-color: rgba(12, 51, 141, 0.622);
+  color: #fff;
+  margin: 20px 20px;
+  padding: 18px;
+  border-radius: 4px;
+  white-space: nowrap;
+  z-index: 1;
+  opacity: 0;
+  transition: opacity 0.3s;
+  cursor: default;
+}
+
+.keyword:hover::before {
+  visibility: visible;
+  opacity: 1;
 }
