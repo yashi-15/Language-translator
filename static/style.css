@@ -22,7 +22,7 @@ body {
 }
 
 #output {
-  margin-top: 20px;
+  margin-top: 70px;
   padding: 20px 20px;
   display: flex;
   justify-content: center;
@@ -32,10 +32,7 @@ body {
   margin: 10px 70px;
 }
 
-#keywords {
-  display: flex;
-  flex-direction: column;
-}
+
 .keyword {
   margin: 10px 10px;
   border: 2px solid rgba(12, 51, 141, 0.622);
@@ -156,4 +153,74 @@ label {
 .keyword:hover::before {
   visibility: visible;
   opacity: 1;
+}
+
+.container-meter {
+  width: 312px;
+  height: 150px;
+  position: absolute;
+  overflow: hidden;
+  text-align: center;
+  transform: translate(-50%, -50%);
+}
+.gauge-a {
+  z-index: 1;
+  position: absolute;
+  background-color: rgba(255,255,255,.2);
+  width: 300px;
+  height: 150px;
+  top: 0%;
+  border-radius: 250px 250px 0px 0px;
+}
+.gauge-b {
+  z-index: 3;
+  position: absolute;
+  background-color: #222;
+  width: 150px;
+  height: 125px;
+  top: 75px;
+  margin-left: 75px;
+  margin-right: auto;
+  border-radius: 250px 250px 0px 0px;
+}
+.gauge-c {
+  z-index: 2;
+  position: absolute;
+  background-color: rgba(12, 51, 141, 0.622);
+  width: 300px;
+  height: 150px;
+  top: 151px;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 0px 0px 200px 200px;
+  transform-origin: center top;
+  transition: all 1.3s ease-in-out;
+}
+.container-meter:hover .gauge-c {  transform: rotate(var(--rotation, 0deg));
+}
+.container-meter:hover .gauge-data { color: rgba(255,255,255,1); }
+.gauge-data {
+  z-index: 4;
+  color: rgba(255,255,255,.2);
+  font-size: 1.5em;
+  line-height: 25px;
+  position: absolute;
+  width: 300px;
+  height: 150px;
+  top: 90px;
+  margin-left: auto;
+  margin-right: auto;
+  transition: all 1s ease-out;
+}
+
+
+#percent{
+  font-size: 18px;
+}
+
+.accu-key{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
 }

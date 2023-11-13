@@ -4,7 +4,12 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Language Translator</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
     <link
       rel="stylesheet"
       href="{{ url_for('static', filename='style.css') }}"
@@ -14,27 +19,55 @@
     <h1 class="container text-center text-white mt-5">Language Translator</h1>
 
     <div class="lang-selector text-white">
-      <label for="target-language " >Select target language:</label>
-      <select id="languageSelect" class="form-select bg-black text-white bord fw-light">
+      <label for="target-language ">Select target language:</label>
+      <select
+        id="languageSelect"
+        class="form-select bg-black text-white bord fw-light"
+      >
         <option value="es">Spanish</option>
         <option value="fr">French</option>
         <option value="hi">Hindi</option>
         <option value="de">German</option>
         <!-- Add more language options here -->
       </select>
-      
     </div>
 
     <div class="initial-blocks">
       <div class="text-translator">
-        <label for="source-text" class="mb-2 text-white form-label">Enter text to translate:</label>
-        <textarea id="source-text" rows="4" cols="50" class="mb-2 bg-black text-white form-control bord"></textarea>
-        <button onclick="translateText()" class="mb-2 bg-black" id="translate-btn">Translate</button>
+        <label for="source-text" class="mb-2 text-white form-label"
+          >Enter text to translate:</label
+        >
+        <textarea
+          id="source-text"
+          rows="4"
+          cols="50"
+          class="mb-2 bg-black text-white form-control bord"
+        ></textarea>
+        <button
+          onclick="translateText()"
+          class="mb-2 bg-black"
+          id="translate-btn"
+        >
+          Translate
+        </button>
       </div>
       <div class="doc-translator m-5">
-        <label class="mb-2 text-white form-label">Upload file (.pdf/.jpg/.jpeg/.png) here:</label>
-        <input type="file" class="form-control bg-black mb-2 text-white fw-light bord" id="fileInput" accept=".pdf, .jpg, .jpeg, .png"/>
-        <button onclick="translateDocument()" class="mb-2 bg-black" id="translate-btn">Translate</button>
+        <label class="mb-2 text-white form-label"
+          >Upload file (.pdf/.jpg/.jpeg/.png) here:</label
+        >
+        <input
+          type="file"
+          class="form-control bg-black mb-2 text-white fw-light bord"
+          id="fileInput"
+          accept=".pdf, .jpg, .jpeg, .png"
+        />
+        <button
+          onclick="translateDocument()"
+          class="mb-2 bg-black"
+          id="translate-btn"
+        >
+          Translate
+        </button>
       </div>
     </div>
     <div id="loading">
@@ -46,13 +79,19 @@
     </div>
     <div id="output">
       <div id="translated-text" class="text-white"></div>
-      <div id="accuracy-check" class="text-white">
-        <!-- <p>Accuracy of the translated text is 80%</p> -->
-      </div>
-      <div id="keywords">
-        <div id="keys" class="text-white">
+      <div class="accu-key">
+        <div class="accuracy">
+          <div class="container-meter" id="gaugeContainer">
+            <div class="gauge-a"></div>
+            <div class="gauge-b"></div>
+            <div class="gauge-c"></div>
+            <div class="gauge-data">
+              <span id="percent">0%</span>
+            </div>
+          </div>
         </div>
-        <div id="key-frequency" class="text-white">
+        <div id="keywords">
+          <div id="keys" class="text-white"></div>
         </div>
       </div>
     </div>

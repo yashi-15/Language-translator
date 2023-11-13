@@ -1,3 +1,16 @@
+function updateMeter(percentage) {
+    const container = document.getElementById('gaugeContainer');
+    const percentElement = document.getElementById('percent');
+    const rotationAngle = (percentage / 100) * 360;
+    container.style.setProperty('--rotation', `${rotationAngle}deg`);
+    container.addEventListener('mouseover', () => {
+        percentElement.textContent = `${percentage}%`;
+  });
+  container.addEventListener('mouseout', () => {
+    percentElement.textContent = '0%';
+  });
+  }
+
 function displayKeywords(keywords_list, translation_of_keys, freq_of_keys) {
     var keysContainer = document.getElementById('keys');
     keysContainer.innerHTML = '';
@@ -81,11 +94,12 @@ function translateText() {
     .then(data => {
         console.log(data)
         document.getElementById('translated-text').textContent = data.translation;
-        document.getElementById('accuracy-check').textContent = data.similarity;
+        var accuracy= data.similarity;
         var freqKey = data.frequency;
         var keywords = data.keys;
         var keysTrans = data.keystranslation;
         displayKeywords(keywords,keysTrans,freqKey);
+        updateMeter(accuracy);
         scrollToOutput();
     })
     .catch(error => console.error('Error:', error))
@@ -127,7 +141,6 @@ function translateDocument() {
         document.getElementById('translated-text').textContent = data.translation;
         var keywords = data.keys
         displayKeywords(keywords,keysTrans,freqKey);
-        document.getElementById('key-frequency').textContent = data.frequency;
         scrollToOutput();
     })
     .catch(error => {
