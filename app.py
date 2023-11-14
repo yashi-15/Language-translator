@@ -88,16 +88,23 @@ def translate_text():
     target_language = request.form['languageSelect']
     translator = Translator(to_lang=target_language)
     translated_text = translator.translate(text)
-
+    # translator = ts()
     keywords = extract_keywords(text)
-    # print(keywords)
+    print(translated_text)
+    print(keywords)
+    print(target_language)
     keys = [item[0] for item in keywords]
     frequency = [item[1] for item in keywords]
-    print(translated_text)
+    key_trans=[]
+    for key in keys:
+        trans=translator.translate(key)
+        key_trans.append(trans)    
     print(keys)
     print(frequency)
-    response = {'translation': translated_text,'keys': keys, 'frequency': frequency}
-
+    print(key_trans)
+    similarity = calculate_similarity(text, translated_text)
+    print(similarity)
+    response = {'translation': translated_text,'keys': keys, 'keystranslation': key_trans, 'frequency': frequency, 'similarity': similarity}
     return jsonify(response)
     # return jsonify({'translated_text': translated_text})
 

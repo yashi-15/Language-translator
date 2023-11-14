@@ -142,10 +142,15 @@ function translateDocument() {
         return response.json();
     })
     .then(data => {
-        console.log(data);
+        console.log(data)
         document.getElementById('translated-text').textContent = data.translation;
-        var keywords = data.keys
+        var accuracy= data.similarity;
+        var freqKey = data.frequency;
+        var keywords = data.keys;
+        var keysTrans = data.keystranslation;
         displayKeywords(keywords,keysTrans,freqKey);
+        updateMeter(accuracy);
+        showAccuracyandKeys();
         scrollToOutput();
     })
     .catch(error => {
