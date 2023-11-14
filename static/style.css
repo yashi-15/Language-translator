@@ -220,8 +220,8 @@ label {
   font-size: 18px;
 }
 
-.accu-key{
-  display: flex;
+#accu-key{
+  display: none;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;

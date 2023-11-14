@@ -1,7 +1,7 @@
 function updateMeter(percentage) {
     const container = document.getElementById('gaugeContainer');
     const percentElement = document.getElementById('percent');
-    const rotationAngle = (percentage / 100) * 360;
+    const rotationAngle = (percentage / 100) * 180;
     container.style.setProperty('--rotation', `${rotationAngle}deg`);
     container.addEventListener('mouseover', () => {
         percentElement.textContent = `${percentage}%`;
@@ -74,6 +74,10 @@ function hideLoading() {
     document.getElementById('loading').style.display = 'none';
 }
 
+function showAccuracyandKeys() {
+    document.getElementById('accu-key').style.display = 'flex';
+}
+
 function translateText() {
     const sourceText = document.getElementById('source-text').value;
     const targetLanguage = document.getElementById('languageSelect').value;
@@ -100,6 +104,7 @@ function translateText() {
         var keysTrans = data.keystranslation;
         displayKeywords(keywords,keysTrans,freqKey);
         updateMeter(accuracy);
+        showAccuracyandKeys();
         scrollToOutput();
     })
     .catch(error => console.error('Error:', error))
