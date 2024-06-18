@@ -8,6 +8,7 @@ A web application which takes a text or image input from user and converts the t
 
 # Technology
 Frontend - HTML, CSS, Bootstrap, JavaScript
+
 Backend - Python, Flask Library
 
 # Setup
